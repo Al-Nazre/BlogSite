@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
+use file;
 
 class PostController extends Controller
 {
@@ -16,15 +17,21 @@ class PostController extends Controller
     public function index(){
         $post = Post::where('user_id', Auth::user()->id )->paginate(10);
 
-        return view('post', [
+        return view('post.index', [
             'post' => $post
         ]);
     }
-     public function create(){
+
+    public function create(){
+        
+        return view('post.create');
+    }
+    
+     public function store(Request $request){
          $post = new Post;
          $request->validate([
-            'title' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'title' => 'required',
                 ]);
 
         if ($request->hasfile('image'))
@@ -32,12 +39,16 @@ class PostController extends Controller
             $file = $request->file('image');
             $ext = $file->getClientOriginalExtension();
             $filename = time().'.'.$ext;
-            $file->move('uploads',$filename);
+            $file->move('uploads/',$filename);
             $post->image = $filename;
         }
+        $post->user_id = Auth::user()->id;
         $post->title = $request->input('title');
         $post->slug = $request->input('slug');
-        $post->slug = $request->input('body');
+        $post->body = $request->input('body');
+        $post->save();
+
+        return view('post.index');
 
 
      }
