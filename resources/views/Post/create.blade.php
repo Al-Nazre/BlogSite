@@ -1,10 +1,10 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container"
-        <div class="card">
+    <div class="container">
+        <div class="card m-3">
         <div class="card-header">
-          <h4> Add post</h4>
+          <h4 class="text-center"> Add post</h4>
         </div>
     <div class="card-body">
         <form action="post-store" method="POST" enctype="multipart/form-data">
@@ -28,11 +28,14 @@
                 
                 
                 <div class="col-md-12">
-                    <input type="file" name="image" class="form-control">
+                    <label for="">Upload Image:</label>
+                    <input type="file"  name="image" class="form-control">
                 </div>
                 
-                <div class="col-md-12"> 
-                    <button type="submit" class="Ebtn btn-primary">Submit</button>
+                <div class="col-md-12 m-3"> 
+                    <center>
+                        <button type="submit" class="btn btn-primary text-center">Submit</button>
+                    </center>
                 </div>
             </div>
         </form>

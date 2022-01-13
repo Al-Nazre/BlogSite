@@ -1,29 +1,27 @@
 @extends('layouts.master')
 
 @section('content')
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+<div class="container">
+  <h3 class="text-center m-3">List of all posts</h3>
+  @foreach($posts as $item)
+  <div class="m-3">
+    <div class="p-3 card rounded ">
+      <div class="row mb-3">
+        <div class="col-md-3 col-12">
+          <img class="img-post" src="uploads/{{$item->image}}" alt="Image" name="image">
+        </div>
+        <div class="col-md-9 col-12 text-center">
+          <h5>{{$item->title}}</h5>
+          <small>{{$item->body}}</small>
+        </div>
       </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      <center>
+        <button class="btn btn-warning" data-toggle="modal" data-target="#EditModal2">EDIT</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-danger" data-toggle="modal" data-target="#DeleteModal2">DELETE</button>
+      </center>
     </div>
   </div>
+  @endforeach 
 </div>
+
 @endsection

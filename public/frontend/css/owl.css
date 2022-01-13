@@ -176,3 +176,10 @@
   z-index: 1;
   height: 100%;
   width: 100%; }
+.img-post{
+  height: auto;
+  width: 100%;
+}
+.card{
+  background-color: #ecedf5a6;
+}

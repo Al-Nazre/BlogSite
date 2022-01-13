@@ -15,15 +15,13 @@ class PostController extends Controller
     }
 
     public function index(){
-        $post = Post::where('user_id', Auth::user()->id )->paginate(10);
+        $posts = Post::where('user_id', Auth::user()->id )->paginate(10);
 
-        return view('post.index', [
-            'post' => $post
-        ]);
+        return view('post.index',compact('posts'));
     }
 
     public function create(){
-        
+      //  $post = Post::where('user_id', Auth::user()->id );
         return view('post.create');
     }
     
@@ -48,7 +46,7 @@ class PostController extends Controller
         $post->body = $request->input('body');
         $post->save();
 
-        return view('post.index');
+        return redirect('post')->with('status', 'Post Added Successfully!');
 
 
      }
