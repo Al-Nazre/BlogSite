@@ -8,7 +8,7 @@
     <div class="p-3 card rounded ">
       <div class="row mb-3">
         <div class="col-md-3 col-12">
-          <img class="img-post" src="uploads/{{$item->image}}" alt="Image" name="image">
+          <img class="img-post" src="storage/uploads/{{$item->image}}" alt="Image" name="image">
         </div>
         <div class="col-md-9 col-12 text-center">
           <h5>{{$item->title}}</h5>
