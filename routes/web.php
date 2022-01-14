@@ -23,4 +23,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/post', [App\Http\Controllers\PostController::class, 'index'])->name('post');
 Route::get('/post-create', [App\Http\Controllers\PostController::class, 'create'])->name('create-post');
 Route::post('/post-store', [App\Http\Controllers\PostController::class, 'store'])->name('create-store');
+Route::get('edit-post-{id}', [App\Http\Controllers\PostController::class, 'edit'])->name('edit');
+Route::put('update-post/{id}', [App\Http\Controllers\PostController::class, 'update'])->name('update');
+
 

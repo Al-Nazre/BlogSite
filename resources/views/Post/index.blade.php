@@ -16,7 +16,8 @@
         </div>
       </div>
       <center>
-        <button class="btn btn-warning" data-toggle="modal" data-target="#EditModal2">EDIT</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        
+        <a href="{{url('edit-post-'.$item->id)}}" class ="text-light"><button class="btn btn-warning" >EDIT</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button class="btn btn-danger" data-toggle="modal" data-target="#DeleteModal2">DELETE</button>
       </center>
     </div>

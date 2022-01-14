@@ -102,4 +102,60 @@ class PostController extends Controller
     });
     $img->save($path);
 }
+
+    public function edit($id){
+        $post = Post::find($id);
+        return view('post.edit', compact('post'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $post = Post::find($id);
+         $request->validate([
+        'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'title' => 'required',
+        
+                ]);
+        if($request->hasfile('image'))
+        {
+            $path = 'storage/uploads/'.$post->image;
+            if(File::exists($path))
+            {
+                File::delete($path);
+            }
+             $file = $request->file('image');
+
+        //get filename with extension
+        $filenamewithextension = $file->getClientOriginalName();
+  
+        //get filename without extension
+        $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+  
+        //get file extension
+        $extension = $file->getClientOriginalExtension();
+  
+        //filename to store
+        $filenametostore = $filename.'_'.time().'.'.$extension;
+
+        //small thumbnail name
+        $smallthumbnail = $filename.'_small_'.time().'.'.$extension;
+        
+        $request->file('image')->storeAs('public/uploads', $filenametostore);
+        $request->file('image')->storeAs('public/uploads/thumbnail', $smallthumbnail);
+
+  
+        //create small thumbnail
+        $smallthumbnailpath = public_path('storage/uploads/thumbnail/'.$smallthumbnail);
+        $this->createThumbnail($smallthumbnailpath, 300, 200);
+
+            $post->image = $filenametostore;
+        }
+
+        $post->title = $request->input('title');
+        $post->slug = $request->input('slug');
+        $post->body = $request->input('body');
+        $post->update();
+
+        return redirect('post')->with('status', 'Post updated Successfully!');
+    }
 }
