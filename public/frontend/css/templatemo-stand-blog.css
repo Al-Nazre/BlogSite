@@ -49,7 +49,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .heading-page {
-	padding-top: 110px;
+	padding-top: 40px;
 }
 
 .page-heading {
@@ -475,7 +475,6 @@ header .navbar {
 	padding: 25px 0px;
 	margin: 25px 0px;
 	border-top: 1px solid #eee;
-	border-bottom: 1px solid #eee;
 }
 
 .blog-posts .down-content ul.post-share {

@@ -10,15 +10,12 @@ use Image;
 
 class PostController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    
 
     public function index(){
-        $posts = Post::where('user_id', Auth::user()->id )->paginate(10);
+        $posts = Post::where('user_id', Auth::user()->id )->paginate(5);
 
-        return view('post.index',compact('posts'));
+        return view('post.index',compact('posts'))->with('user', auth()->user());
     }
 
     public function create(){
@@ -31,24 +28,6 @@ class PostController extends Controller
         'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'title' => 'required',
                 ]);
-
-       /* if ($request->hasfile('image'))
-        {
-            $file = $request->file('image');
-            $ext = $file->getClientOriginalExtension();
-            $filename = time().'.'.$ext;
-            $file->move('storage/uploads/',$filename);
-            $post->image = $filename;
-
-          //small thumbnail name
-            $smallthumbnail = $filename.'_small_'.time().'.'.$ext;
-
-            $request->file('image')->move('public/uploads/thumbnail/', $smallthumbnail);
-
-        //create small thumbnail
-        $smallthumbnailpath = public_path('storage/uploads/thumbnail/'.$smallthumbnail);
-        $this->createThumbnail($smallthumbnailpath, 300, 200);
-        }*/
 
        if($request->hasFile('image')) {
 
@@ -97,9 +76,7 @@ class PostController extends Controller
      }
      public function createThumbnail($path, $width, $height)
 {
-    $img = Image::make($path)->resize($width, $height, function ($constraint) {
-        $constraint->aspectRatio();
-    });
+    $img = Image::make($path)->resize($width, $height);
     $img->save($path);
 }
 
@@ -157,5 +134,26 @@ class PostController extends Controller
         $post->update();
 
         return redirect('post')->with('status', 'Post updated Successfully!');
+    }
+
+    public function delete($id)
+    {
+        $post = Post::find($id);
+        if($post->image)
+        {
+            $path = 'storage/uploads/'.$post->image;
+            if(File::exists($path))
+            {
+                File::delete($path);
+            }
+        }
+        $post->delete();
+        return redirect('post')->with('status', 'Post deleted Successfully!');
+    }
+
+    public function slug($slug)
+    {
+        $post = Post::where('slug',$slug)->first();
+        return view('post.slug', compact('post'));
     }
 }

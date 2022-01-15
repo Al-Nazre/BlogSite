@@ -4,7 +4,7 @@
     <div class="container">
         <div class="card m-3">
         <div class="card-header">
-          <h4 class="text-center"> Add post</h4>
+          <h4 class="text-center"> Add Post</h4>
         </div>
     <div class="card-body">
         <form action="post-store" method="POST" enctype="multipart/form-data">

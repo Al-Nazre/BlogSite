@@ -14,14 +14,14 @@
     <title>BlogSite</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="frontend/css/bootstrap.min.css" rel="stylesheet">
-    <link href="frontend/css/bootstrap5.css" rel="stylesheet">
-    <link rel="stylesheet" href="frontend/css/custom.css">
+    <link href="{{asset('frontend/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('frontend/css/bootstrap5.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('frontend/css/custom.css')}}">
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="frontend/css/fontawesome.css">
-    <link rel="stylesheet" href="frontend/css/templatemo-stand-blog.css">
-    <link rel="stylesheet" href="frontend/css/owl.css">
+    <link rel="stylesheet" href="{{asset('frontend/css/fontawesome.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/templatemo-stand-blog.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/owl.css')}}">
 
 
   </head>
@@ -42,12 +42,15 @@
           @endforeach
           @endif
         </div>
-    
         
-          @yield('content')
         
-
-        @include ('layouts.inc.footer')
+          <div id="main">
+            @yield('content')
+          </div>
+     
+        <div id="footer">
+          @include ('layouts.inc.footer')
+        </div>
     
       
 
@@ -55,19 +58,19 @@
 
 
         <!-- Bootstrap core JavaScript -->
-    <script src="frontend/js/jquery.min.js"></script>
-    <script src="frontend/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
+    <script src="{{asset('frontend/js/bootstrap.bundle.min.js')}}"></script>
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
     
     @include ('layouts.inc.js')
     
     <!-- Additional Scripts -->
-   <script src="frontend/js/custom.js"></script>
-    <script src="frontend/js/owl.js"></script>
-    <script src="frontend/js/slick.js"></script>
-    <script src="frontend/js/isotope.js"></script>
-    <script src="frontend/js/accordions.js"></script>
+   <script src="{{asset('frontend/js/custom.js')}}"></script>
+    <script src="{{asset('frontend/js/owl.js')}}"></script>
+    <script src="{{asset('frontend/js/slick.js')}}"></script>
+    <script src="{{asset('frontend/js/isotope.js')}}"></script>
+    <script src="{{asset('frontend/js/accordions.js')}}"></script>
 
 
       </body>

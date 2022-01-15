@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-  <h3 class="text-center m-3">List of all posts</h3>
+  <h3 class="text-center m-3">{{$user->name}}'s Posts</h3>
   @foreach($posts as $item)
   <div class="m-3">
     <div class="p-3 card rounded ">
@@ -18,11 +18,18 @@
       <center>
         
         <a href="{{url('edit-post-'.$item->id)}}" class ="text-light"><button class="btn btn-warning" >EDIT</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button class="btn btn-danger" data-toggle="modal" data-target="#DeleteModal2">DELETE</button>
+        <a href="{{url('delete-post/'.$item->id)}}" class="btn btn-danger" >DELETE</a>
       </center>
     </div>
   </div>
   @endforeach 
 </div>
+ <center>
+      <div class="wrapper">
+        <span>
+            {{$posts->links()}}
+        </span>
+      </div>
+    </center><br><br><br>
 
 @endsection

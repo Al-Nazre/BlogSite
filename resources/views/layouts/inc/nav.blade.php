@@ -4,7 +4,7 @@
     <div class="brand">
       <a href="/">Blog Site</a>
     </div>
-    <nav>
+    <nav class="nav">
       <div class="nav-mobile"><a id="navbar-toggle"><span class="text-dark"></span></a></div>
       <center>
         <ul class="nav-list">
@@ -12,10 +12,10 @@
             <a  href="/">Home</a>
             </li>
             <li>
-            <a href="login">Login</a>
+            <a href="{{url('login')}}">Login</a>
             </li>
             <li>
-            <a href="register">Register</a>
+            <a href="{{url('register')}}">Register</a>
             </li>
         </ul>
     </center>
@@ -28,18 +28,18 @@
     <div class="brand">
       <a href="home">Blog Site</a>
     </div>
-    <nav>
+    <nav class="nav">
       <div class="nav-mobile"><a id="navbar-toggle"><span class="text-dark"></span></a></div>
       <center>
         <ul class="nav-list">
             <li>
-            <a  href="home">Home</a>
+            <a  href="{{url('home')}}">Home</a>
             </li>
             <li>
-            <a href="post-create">Add Post</a>
+            <a href="{{url('post-create')}}">Add Post</a>
             </li>
             <li>
-            <a href="post">My Posts</a>
+            <a href="{{url('post')}}">My Posts</a>
             </li>
             <li>
             <a href="{{ route('logout') }}"

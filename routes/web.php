@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\FrontendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,17 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'indexWelcome'])->name('wellcome');
 
 Auth::routes();
+Route::middleware('auth')->group(function(){
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/post', [App\Http\Controllers\PostController::class, 'index'])->name('post');
+    Route::get('/post-create', [App\Http\Controllers\PostController::class, 'create'])->name('create-post');
+    Route::post('/post-store', [App\Http\Controllers\PostController::class, 'store'])->name('create-store');
+    Route::get('edit-post-{id}', [App\Http\Controllers\PostController::class, 'edit'])->name('edit');
+    Route::put('update-post/{id}', [App\Http\Controllers\PostController::class, 'update'])->name('update');
+    Route::get('delete-post/{id}', [App\Http\Controllers\PostController::class, 'delete'])->name('delete-post');
+    Route::get('post/{slug}', [App\Http\Controllers\PostController::class, 'slug'])->name('post-slug');
+});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/post', [App\Http\Controllers\PostController::class, 'index'])->name('post');
-Route::get('/post-create', [App\Http\Controllers\PostController::class, 'create'])->name('create-post');
-Route::post('/post-store', [App\Http\Controllers\PostController::class, 'store'])->name('create-store');
-Route::get('edit-post-{id}', [App\Http\Controllers\PostController::class, 'edit'])->name('edit');
-Route::put('update-post/{id}', [App\Http\Controllers\PostController::class, 'update'])->name('update');
+
 
 
