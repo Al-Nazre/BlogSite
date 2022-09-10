@@ -30,7 +30,7 @@
 
       
 
-        @include ('layouts.inc.nav')
+        @include('layouts.inc.nav')
 
         <div class="container">
 
@@ -48,9 +48,9 @@
             @yield('content')
           </div>
      
-        <div id="footer">
-          @include ('layouts.inc.footer')
-        </div>
+        
+          @include('layouts.inc.footer')
+        
     
       
 
@@ -63,7 +63,7 @@
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
     
-    @include ('layouts.inc.js')
+
     
     <!-- Additional Scripts -->
    <script src="{{asset('frontend/js/custom.js')}}"></script>

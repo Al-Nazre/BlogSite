@@ -2,14 +2,14 @@
 <section class="navigation shadow-lg">
   <div class="nav-container">
     <div class="brand">
-      <a href="/">Blog Site</a>
+      <a href="{{url('/')}}">Blog Site</a>
     </div>
     <nav class="nav">
       <div class="nav-mobile"><a id="navbar-toggle"><span class="text-dark"></span></a></div>
       <center>
         <ul class="nav-list">
             <li>
-            <a  href="/">Home</a>
+            <a  href="{{url('/')}}">Home</a>
             </li>
             <li>
             <a href="{{url('login')}}">Login</a>
@@ -23,17 +23,17 @@
   </div>
 </section>
 @else
-<section class="navigation">
+<section class="navigation bg-dark">
   <div class="nav-container">
     <div class="brand">
-      <a href="home">Blog Site</a>
+      <a href="{{url('/')}}">Blog Site</a>
     </div>
     <nav class="nav">
       <div class="nav-mobile"><a id="navbar-toggle"><span class="text-dark"></span></a></div>
       <center>
         <ul class="nav-list">
             <li>
-            <a  href="{{url('home')}}">Home</a>
+            <a  href="{{url('/')}}">Home</a>
             </li>
             <li>
             <a href="{{url('post-create')}}">Add Post</a>
